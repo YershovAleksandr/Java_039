@@ -3,6 +3,8 @@ package com.nam;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.lang.reflect.Method;
+
 public class Foo {
     private Bar bar = new Bar(1);
     private List<Bar> barList = new ArrayList<>();
@@ -18,7 +20,7 @@ public class Foo {
 
     }
 
-    public void run(){
+    public void run() throws Exception{
         System.out.println("Foo run");
 
         Bar bar1 = new Bar(11);
@@ -33,6 +35,14 @@ public class Foo {
         Bar bar4 = foo2(bar1, bar2, bar3);
         System.out.println(bar4.toString());
         System.out.println(bar3.toString());
+
+        Method method = Class.forName("com.nam.ConcreteBuz").newInstance().getClass().getMethod("read2ch");
+
+        int i = (int)method.invoke(Class.forName("com.nam.ConcreteBuz").newInstance());
+
+        System.out.println("Reflection hack i = " + i);
+
+
     }
 
     public Bar foo2(Bar bar, Bar bar2, Bar bar3){
@@ -41,7 +51,10 @@ public class Foo {
         Bar br = new Bar(bar.getBar() * bar2.getBar());
 
 
-        bar3 = br;
+        //bar3 = new Bar(br);
+        //bar3 = br.clone();
+        //bar3 = br;
+        bar3.setBar(br.getBar());
 
         return br;
     }
