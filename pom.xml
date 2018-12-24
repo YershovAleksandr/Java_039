@@ -64,7 +64,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.6.0</version>
           <configuration>
-            <mainClass>com.nam.App</mainClass>
+            <mainClass>com.namto.App</mainClass>
           </configuration>
         </plugin>
       </plugins>
