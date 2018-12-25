@@ -11,6 +11,8 @@ public class App {
             res = Stuff.run(0);
         }catch(Exception e){
             e.printStackTrace();
+        }finally{
+            System.out.println("FIN!!!");
         }
 
         System.out.println("Res = " + res);
