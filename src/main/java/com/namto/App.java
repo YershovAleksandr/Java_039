@@ -8,7 +8,7 @@ public class App {
         double res = 0.;
 
         try {
-            res = Stuff.run(10);
+            res = Stuff.run(0);
         }catch(Exception e){
             e.printStackTrace();
         }finally{
