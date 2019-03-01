@@ -37,6 +37,11 @@ public class App
 
         try(InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)){
             JsonObject obj = rdr.readObject();
+
+            System.out.println("found " + obj.getInt("found"));
+            System.out.println("per_page " + obj.getInt("per_page"));
+            System.out.println("page " + obj.getInt("page"));
+
             JsonArray results = obj.getJsonArray("items");
 
             int i = 0;
