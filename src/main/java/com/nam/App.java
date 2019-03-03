@@ -26,7 +26,8 @@ public class App
         ParseReader parseReader = new ParseReader(parseProcessDb);
         Parser parser = new Parser(parseReader,1202, 1);
 
-        parser.parse(100, 0);
+        parser.parse();
+
         log.info("Found {}", parser.getFound());
     }
 }

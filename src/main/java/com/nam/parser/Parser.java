@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static java.lang.Math.min;
+
 public class Parser {
     private static Logger log = LoggerFactory.getLogger(Parser.class);
 
@@ -26,6 +28,13 @@ public class Parser {
     final private String KEY_PUBLISHED_AT = "published_at";
     final private String KEY_EMPLOYER = "employer";
 
+    final private int PER_PAGE = 20;
+
+    //api restrictions
+    final private int MAX_PER_PAGE = 100;
+    //final private int MAX_ITEMS = 2000;
+    final private int MAX_ITEMS = 200;
+
     private ParseReader parseReader;
 
     private int area;
@@ -38,17 +47,27 @@ public class Parser {
         this.specialization = specialization;
     }
 
-    //TODO ???
     public int getFound(){
         return found;
     }
 
-    //TODO ???
     public void parse(){
+        int perPage = min(PER_PAGE, MAX_PER_PAGE);
 
+        parse(perPage, 0);
+
+        int times = min(getFound() / PER_PAGE, MAX_ITEMS / PER_PAGE);
+
+        log.info("Times = {}", times);
+
+        for (int i = 1; i < times; i++){
+            parse(perPage, i);
+
+            log.info("I = {}", i);
+        }
     }
 
-    public void parse(int per_page, int page){
+    private void parse(int per_page, int page){
         URL url;
 
         try {
