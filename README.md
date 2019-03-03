@@ -1,4 +1,5 @@
 # Java_039
-Java console application with maven
+
+Application for parsing vacancies from hh.ru
 
 mvn exec:java

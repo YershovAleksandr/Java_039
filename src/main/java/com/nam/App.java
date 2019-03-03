@@ -1,18 +1,12 @@
 package com.nam;
 
 import com.nam.parser.ParseProcess;
-//import com.nam.parser.log.ParseProcessImpl;
-//import com.nam.parser.db.ParseProcessImpl;
 import com.nam.parser.ParseReader;
 import com.nam.parser.Parser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     private static Logger log = LoggerFactory.getLogger(App.class);
 
