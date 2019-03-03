@@ -9,6 +9,12 @@ public class ParseReader {
     private String publishedAt;
     private String employerName;
 
+    private ParseProcess parseProcess;
+
+    public ParseReader(ParseProcess parseProcess){
+        this.parseProcess = parseProcess;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -37,10 +43,8 @@ public class ParseReader {
         this.employerName = employerName;
     }
 
-    private static int i = 0;
-
     public void process(){
-        System.out.println(++i + " " + toString());
+        parseProcess.process(this);
     }
 
     @Override

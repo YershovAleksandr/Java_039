@@ -1,5 +1,8 @@
 package com.nam.parser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -9,8 +12,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Parser {
+    private static Logger log = LoggerFactory.getLogger(Parser.class);
 
-    //final private String URL_PATH = "https://api.hh.ru/vacancies?area=1202&specialization=1&per_page=100&page=0";
     final private String URL_PATH_FORMAT = "https://api.hh.ru/vacancies?area=%d&specialization=%d&per_page=%d&page=%d";
     final private String KEY_FOUND = "found";
     final private String KEY_ITEMS = "items";
@@ -51,7 +54,7 @@ public class Parser {
         try {
             url = new URL(String.format(URL_PATH_FORMAT, area, specialization, per_page, page));
         }catch (MalformedURLException e){
-            e.printStackTrace();
+            log.error("Error", e);
 
             return;
         }
@@ -89,9 +92,7 @@ public class Parser {
                 parseReader.process();
             }
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("Error", e);
         }
-
-        System.out.println();
     }
 }
